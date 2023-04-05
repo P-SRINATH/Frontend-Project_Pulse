@@ -1,0 +1,16 @@
+{
+  "users": [
+    {
+      "email": "pvlnsrinath@gmail.com",
+      "password": "srinath",
+      "id": 1
+    }
+  ],
+  "logins": [
+    {
+      "email": "pvlnsrinath@gmail.com",
+      "password": "srinath",
+      "id": 1
+    }
+  ]
+}
