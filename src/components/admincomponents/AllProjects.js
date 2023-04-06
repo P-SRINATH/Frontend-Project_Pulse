@@ -11,25 +11,29 @@ export default function AllProjects() {
     let navigate=useNavigate()
     let [project,setAllProjects]=useState([])
     const token=sessionStorage.getItem("token")
+    //Function to delete project based on ID
     const deleteProj=async(id)=>{
       await axios.delete(`http://localhost:4000/admin/deleteProject/${id}`,{
         headers:{Authorization: `Bearer ${token}`}
       })
       getProjectData()
     }
+    //Function to get all the project details
     const getProjectData=async()=>{
       let res=await axios.get(`http://localhost:4000/admin/getProjectDetails`,{
       headers:{Authorization: `Bearer ${token}`}
     })
     setAllProjects(res.data.projects)
   }
-
+  //Use Effect displays the Projects as soon as the admin page loads
   useEffect(()=>{
     getProjectData()
   },[])
   return (
     <div>
+      {/* Component to create Project  */}
         <CreateProject getProjectData={getProjectData}/>
+        {/*Table to display The admin Dashboard with  all projects */}
       <p className='fs-3 text-center'>PROJECT PORTFOLIO DASHBOARD</p>
         <table class="table table-hover table-bordered table-responsive shadow">
             <thead>

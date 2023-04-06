@@ -13,7 +13,7 @@ export default function CreateProjectUpdates(props) {
       const [show, setShow] = useState(false);
       const handleClose = () => setShow(false);
       const handleShow = () => setShow(true);
-  
+      //Function to create/Raise Project Update 
       const projectUpdate=async()=>{
           let userObj=getValues()
           console.log(userObj)
@@ -26,6 +26,7 @@ export default function CreateProjectUpdates(props) {
       }
   return (
     <div>
+      {/*Modal to raise Project Update*/}
       <Button variant="dark" onClick={handleShow}>Raise Update</Button>
         <Modal show={show} onHide={handleClose} backdrop="static" className='bg-light'>
         <Modal.Header closeButton>

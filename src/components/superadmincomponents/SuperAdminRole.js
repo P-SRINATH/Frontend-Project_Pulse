@@ -9,6 +9,7 @@ export default function SuperAdminRole(props) {
     const token=sessionStorage.getItem("token")
     let {status}=useSelector(state=>state.login)
 
+    //Function to map the roles to the users and then re-rendering the data using props
     const onSubmit=async(userObj)=>{
         await axios.put('http://localhost:4000/super-admin/createUserRole',userObj,{
         headers:{Authorization: `Bearer ${token}`}})
@@ -20,6 +21,7 @@ export default function SuperAdminRole(props) {
     },[status])
   return (
     <div>
+        {/*Form to assign the Roles to the Users*/}
         <div className='row'>
         <div className='col-10 col-sm-8 col-md-6 shadow mt-4 ms-5'>
             <form >

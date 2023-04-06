@@ -13,7 +13,7 @@ export default function CreateProjectConcerns(props) {
       const [show, setShow] = useState(false);
       const handleClose = () => setShow(false);
       const handleShow = () => setShow(true);
-  
+      //Function to get Project Concerns
       const projectConcern=async()=>{
           let userObj=getValues()
           console.log(userObj)
@@ -27,6 +27,7 @@ export default function CreateProjectConcerns(props) {
       }
   return (
     <div>
+      {/*Modal to create/Raise Project Concern */}
       <Button variant="warning" onClick={handleShow}>Raise Concern</Button>
         <Modal show={show} onHide={handleClose} backdrop="static" className='bg-light'>
         <Modal.Header closeButton>
@@ -75,7 +76,6 @@ export default function CreateProjectConcerns(props) {
           </div>
           <div className='mt-1'>
             <label htmlFor="status_of_concern">Status of Concern</label>
-            {/* <input type="text" {...register('status_of_concern',{required:true})} className='form-control'/> */}
             <select class="form-select" aria-label="Default select example" {...register('status_of_concern',{required:true})}>
                 <option  selected disabled>Select</option>
                 <option value="inprogress">In-Progress</option>

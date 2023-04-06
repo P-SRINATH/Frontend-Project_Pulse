@@ -8,12 +8,14 @@ export default function SuperAdminDashboard() {
   let {status}=useSelector(state=>state.login)
   let [users,setUsers]=useState([])
   const token=sessionStorage.getItem("token")
+  //Function to get the Users list and their roles
   const getUserData=async()=>{
     let res=await axios.get("http://localhost:4000/super-admin/viewAllUsers",{
       headers:{Authorization: `Bearer ${token}`}
     })
     setUsers(res.data.Users)
   }
+  //Intial Data that is loaded when Super-admin log's-in
   useEffect(()=>{
     getUserData()
   },[])
@@ -28,6 +30,7 @@ export default function SuperAdminDashboard() {
                 Type in the Email id of User you want to Assign Role. Add the Role and Click On Add Role button</p>
             </div>
         </div>
+        {/* Component to map the role of users by superadmin */}
         <SuperAdminRole getUserData={getUserData}/>
         </div>
         <div className='col'>

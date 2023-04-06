@@ -5,22 +5,29 @@ import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 export default function GdoProjects() {
+
+  //Get the userObj from the state
   let {userObj}=useSelector(state=>state.login)
+  
   let navigate=useNavigate()
   let [project,setProjects]=useState([])
   const token=sessionStorage.getItem("token")
+
+  //Function to get Projects under the GDO 
   const getProjectData=async()=>{
     let res=await axios.get(`http://localhost:4000/gdo/getPortfolioDashboard/${userObj.user_email}`,{
       headers:{Authorization: `Bearer ${token}`}
     })
     setProjects(res.data.projects)
   }
+
   useEffect(()=>{
     getProjectData()
   },[])
   return (
     <div>
         <p className='fs-3 text-center'>PROJECT PORTFOLIO DASHBOARD</p>
+        {/*Project Dashboard displays the details of the project */}
         <table class="table table-bordered shadow">
             <thead>
                 <tr className='bg-warning'>

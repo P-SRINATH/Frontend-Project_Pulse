@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form';
 import axios from 'axios';
 
 export default function CreateProjectTeam() {
+    //Get the token from the session Storage
     let token=sessionStorage.getItem("token")
     //We can get and set values in the form using getvalues and setvalue
     let {register,formState:{errors},getValues,reset}=useForm()
@@ -13,7 +14,7 @@ export default function CreateProjectTeam() {
       const [show, setShow] = useState(false);
       const handleClose = () => setShow(false);
       const handleShow = () => setShow(true);
-  
+      //Function to create project team 
       const createProjectTeam=async()=>{
           let userObj=getValues()
           let res=await axios.post('http://localhost:4000/gdo/addProjectTeam',userObj,{
@@ -26,6 +27,7 @@ export default function CreateProjectTeam() {
   
     return (
     <div className='mt-4'>
+      {/*Create Project Team using Bootstrap Modal and React */}
       <div className='container me-2 h-100  text-dark shadow'>
         <p className='mt-4'>Hey GDO, Welcome !!! Create your project team Here!!!</p>
        <Button variant="dark mb-4 rounded" onClick={handleShow}>Create Project Team</Button>

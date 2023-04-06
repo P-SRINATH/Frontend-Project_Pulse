@@ -7,7 +7,7 @@ import { useForm } from 'react-hook-form';
 import axios from 'axios';
 
 export default function CreateProject(props) {
-
+  //Token from session storage 
     let token=sessionStorage.getItem("token")
   //We can get and set values in the form using getvalues and setvalue
   let {register,formState:{errors},getValues,reset}=useForm()
@@ -16,6 +16,7 @@ export default function CreateProject(props) {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+    //Function to create a project 
     const createProject=async()=>{
         let userObj=getValues()
         let res=await axios.post('http://localhost:4000/admin/createProject',userObj,{
@@ -28,6 +29,7 @@ export default function CreateProject(props) {
     }
     return (
      <div>
+        {/* Creating a Project using Modal and React-Forms */}
         <Button variant="dark" onClick={handleShow}>Create Project</Button>
         <Modal show={show} onHide={handleClose} backdrop="static" className='bg-light'>
         <Modal.Header closeButton>
@@ -86,7 +88,6 @@ export default function CreateProject(props) {
           </div>
           <div className='mt-1'>
             <label htmlFor="project_fitness">Project Fitness</label>
-            {/* <input type="text" {...register('project_fitness',{required:true})}  className='form-control'/> */}
             <select class="form-select" aria-label="Default select example"  {...register('project_fitness',{required:true})} >
                 <option selected disabled>Select</option>
                 <option value="amber">Amber</option>
