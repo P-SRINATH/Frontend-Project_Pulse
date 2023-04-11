@@ -1,9 +1,5 @@
-import React from 'react'
+import React from "react";
 
 export default function ErrorPage() {
-  return (
-    <div>
-      
-    </div>
-  )
+  return <div>Error Occured While Loading Page</div>;
 }

@@ -5,16 +5,18 @@ import CreateProjectTeam from "./CreateProjectTeam";
 import { useState } from "react";
 import axios from "axios";
 import ResourceRequest from "./ResourceRequest";
+import { useSelector } from "react-redux";
 
 //GDO dashboard is the default page that appears when GDO head Logs-in
 export default function GdoDashboard() {
   let [resource, setResource] = useState([]);
+  let { userObj } = useSelector((state) => state.login);
 
   const token = sessionStorage.getItem("token");
 
   const getResourceData = async () => {
     let res = await axios.get(
-      `http://localhost:4000/gdo/displayResourceRequest`,
+      `http://localhost:4000/gdo/displayResourceRequest/${userObj.user_email}`,
       {
         headers: { Authorization: `Bearer ${token}` },
       }
@@ -26,7 +28,7 @@ export default function GdoDashboard() {
   }, []);
   return (
     <div>
-      <div className="row">
+      <div className="row text-center">
         <div className="container col-sm-2">
           <img src={projects2} width="200px" height="300px" alt="img"></img>
           {/* Create a Project Team component */}
@@ -48,7 +50,7 @@ export default function GdoDashboard() {
               </tr>
             </thead>
             <tbody>
-              {resource.map((Obj) => (
+              {resource?.map((Obj) => (
                 <tr key={Obj.project_id}>
                   <td>{Obj.id}</td>
                   <td>{Obj.request_raised_by}</td>

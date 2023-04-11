@@ -4,6 +4,7 @@ import axios from "axios";
 import { useEffect } from "react";
 import CreateProject from "./CreateProject";
 import { useNavigate } from "react-router-dom";
+import moment from "moment/moment";
 
 export default function AllProjects() {
   let navigate = useNavigate();
@@ -50,15 +51,15 @@ export default function AllProjects() {
           </tr>
         </thead>
         <tbody>
-          {project.map((proObj) => (
+          {project?.map((proObj) => (
             <tr key={proObj.project_id}>
               <td>{proObj.project_id}</td>
               <td>{proObj.gdoemail}</td>
               <td>{proObj.project_manager_email}</td>
               <td>{proObj.project_name}</td>
               <td>{proObj.status_of_project}</td>
-              <td>{proObj.project_start_date}</td>
-              <td>{proObj.project_end_date}</td>
+              <td>{moment(proObj.project_start_date).format("YYYY-MM-DD")}</td>
+              <td>{moment(proObj.project_end_date).format("YYYY-MM-DD")}</td>
               <td>{proObj.project_fitness}</td>
               <td>
                 <button
